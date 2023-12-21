@@ -28,16 +28,16 @@ services:
       - ~/.penumbra:/pd
     user: "${UID:-1000}"
     ports:
-      - "24658:26658"
-      - "8480:8080"
+      - "35658:26658"
+      - "8580:8080"
 
   # The CometBFT node
   cometbft-node0:
     image: "docker.io/cometbft/cometbft:v0.37.2"
     user: "${UID:-1000}"
     ports:
-      - "24656:26656"
-      - "24657:26657"
+      - "35656:26656"
+      - "35657:26657"
     volumes:
       - ~/.penumbra/testnet_data/node0/cometbft:/cometbft
     entrypoint: cometbft
