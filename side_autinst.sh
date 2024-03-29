@@ -29,7 +29,9 @@ source .bash_profile
 systemctl stop sided
 cd && rm -rf sidechain
 rm -rf .side/data
-mv .side .side2-bak
+mkdir .side2-bak
+cp -r .side .side2-bak
+rm -rf .side
 
 git clone https://github.com/sideprotocol/sidechain.git
 cd sidechain
