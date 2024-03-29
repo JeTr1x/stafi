@@ -47,8 +47,8 @@ sided config node tcp://localhost:26357
 sided init $SIDE_MONIK --chain-id side-testnet-3
 
 # Download genesis and addrbook files
-curl -L https://snapshots-testnet.nodejumper.io/side-testnet/genesis.json > $HOME/.side/config/genesis.json
-curl -L https://snapshots-testnet.nodejumper.io/side-testnet/addrbook.json > $HOME/.side/config/addrbook.json
+curl -Ls https://snapshots.indonode.net/side-t/genesis.json > $HOME/.side/config/genesis.json
+curl -Ls https://snapshots.indonode.net/side-t/addrbook.json > $HOME/.side/config/addrbook.json
 
 # Set seeds
 sed -i -e 's|^seeds *=.*|seeds = "6decdc5565bf5232cdf5597a7784bfe828c32277@158.220.126.137:11656,e9ee4fb923d5aab89207df36ce660ff1b882fc72@136.243.33.177:21656,9c14080752bdfa33f4624f83cd155e2d3976e303@side-testnet-seed.itrocket.net:45656"|' $HOME/.side/config/config.toml
