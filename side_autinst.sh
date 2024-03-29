@@ -70,6 +70,8 @@ sed -i -e "s%:1317%:26317%; s%:8080%:26380%; s%:9090%:26390%; s%:9091%:26391%; s
 sed -i -e "s%:26658%:26358%; s%:26657%:26357%; s%:6060%:26360%; s%:26656%:26356%; s%:26660%:26361%" $HOME/.side/config/config.toml
 
 
+curl -L https://snapshots.indonode.net/side-t/side-t-latest.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.side
+
 # Create a service
 sudo tee /etc/systemd/system/sided.service > /dev/null << EOF
 [Unit]
