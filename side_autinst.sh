@@ -26,7 +26,10 @@ echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
 source .bash_profile
 
 # Clone project repository
+systemctl stop sided
 cd && rm -rf sidechain
+rm -rf .side/data
+mv .side .side2-bak
 
 git clone https://github.com/sideprotocol/sidechain.git
 cd sidechain
