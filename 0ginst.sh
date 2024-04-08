@@ -19,16 +19,17 @@ CHAIN_ID="zgtendermint_9000-1"
 sudo apt update
 sudo apt install curl git jq build-essential gcc unzip wget lz4 -y
 
-sudo rm -rf /usr/local/go
-curl -L https://go.dev/dl/go1.21.3.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
-echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> $HOME/.bash_profile
-source .bash_profile
+
 
 git clone https://github.com/0glabs/0g-evmos.git
 cd 0g-evmos
 git checkout v1.0.0-testnet
-make install
+wget http://159.69.72.247:13413/evmosd-og.tar.gz
+tar xvzf evmosd-og.tar.gz
+chmod +x evmosd-og
+cp evmosd-og /root/go/bin/evmosd
 evmosd version
+sleep 1
 
 cd $HOME
 evmosd init $ZG_MONIK --chain-id $CHAIN_ID
