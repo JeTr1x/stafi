@@ -33,7 +33,7 @@ sleep 1
 cd $HOME
 0gchaind init $ZG_MONIK --chain-id $CHAIN_ID
 0gchaind config chain-id $CHAIN_ID
-0gchaind config node tcp://localhost:22357
+0gchaind config node tcp://localhost:${ZGP_PORT}657
 0gchaind config keyring-backend test
 
 
@@ -54,6 +54,7 @@ sed -i \
 EXTERNAL_IP=$(wget -qO- eth0.me) \
 PROXY_APP_PORT=${ZGP_PORT}658 \
 P2P_PORT=${ZGP_PORT}656 \
+RPC_PORT=${ZGP_PORT}657 \
 PPROF_PORT=${ZGP_PORT}060 \
 API_PORT=${ZGP_PORT}317 \
 GRPC_PORT=${ZGP_PORT}090 \
@@ -71,7 +72,7 @@ sed -i \
     -e "/\[grpc\]/,/^\[/{s/\(address = \"\)\([^:]*\):\([0-9]*\)\(\".*\)/\1\2:$GRPC_PORT\4/}" \
     -e "/\[grpc-web\]/,/^\[/{s/\(address = \"\)\([^:]*\):\([0-9]*\)\(\".*\)/\1\2:$GRPC_WEB_PORT\4/}" $HOME/.0gchain/config/app.toml
     
-sed -i -e "s%:8545%:22345%; s%:8546%:22346%; s%:6065%:22365%" $HOME/.evmosd/config/app.toml
+sed -i -e "s%:8545%:22345%; s%:8546%:22346%; s%:6065%:22365%" $HOME/.0gchain/config/app.toml
 sed -i "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ua0gi\"/" $HOME/.0gchain/config/app.toml
 
 sudo tee /etc/systemd/system/ogd.service > /dev/null <<EOF
