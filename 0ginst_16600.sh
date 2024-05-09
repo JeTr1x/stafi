@@ -76,6 +76,8 @@ sed -i \
 sed -i -e "s%:8545%:22345%; s%:8546%:22346%; s%:6065%:22365%" $HOME/.0gchain/config/app.toml
 sed -i "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ua0gi\"/" $HOME/.0gchain/config/app.toml
 
+curl -L http://snapshots.liveraven.net/snapshots/testnet/zero-gravity/zgtendermint_16600-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.0gchain
+
 sudo tee /etc/systemd/system/ogd.service > /dev/null <<EOF
 [Unit]
 Description=OG Node
