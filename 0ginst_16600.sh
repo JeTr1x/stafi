@@ -78,6 +78,16 @@ sed -i "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0ua0gi\"/" $HOME/.0gch
 
 curl -L http://snapshots.liveraven.net/snapshots/testnet/zero-gravity/zgtendermint_16600-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.0gchain
 
+PEERS=$(curl -s --max-time 3 --retry 2 --retry-connrefused "https://snapshots.liveraven.net/snapshots/testnet/zero-gravity/peers.txt")
+if [ -z "$PEERS" ]; then
+    echo "No peers were retrieved from the URL."
+else
+    echo -e "\nPEERS: "$PEERS""
+    sed -i "s/^persistent_peers *=.*/persistent_peers = "$PEERS"/" "$HOME/.0gchain/config/config.toml"
+    echo -e "\nConfiguration file updated successfully.\n"
+fi
+
+
 sudo tee /etc/systemd/system/ogd.service > /dev/null <<EOF
 [Unit]
 Description=OG Node
