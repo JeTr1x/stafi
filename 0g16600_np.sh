@@ -89,6 +89,7 @@ WantedBy=multi-user.target
 EOF
 
 
+cp /root/go/bin/0gchaind /usr/local/bin/0gchaind
 
 sudo systemctl daemon-reload && \
 sudo systemctl enable ogd && \
