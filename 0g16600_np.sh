@@ -53,6 +53,7 @@ sed -i \
 
 EXTERNAL_IP=$(wget -qO- eth0.me) \
 
+sed -i -e "s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://0.0.0.0:26657\"%" $HOME/.0gchain/config/config.toml
 sed -i \
     -e "/\[p2p\]/,/^\[/{s/\(external_address = \"\)\([^:]*\):\([0-9]*\).*/\1${EXTERNAL_IP}:26656\"/; t; s/\(external_address = \"\).*/\1${EXTERNAL_IP}:26656\"/}" \
     $HOME/.0gchain/config/config.toml
