@@ -14,8 +14,6 @@ echo -e "\e[0m"
 sleep 1
 read -p "Enter node name: " ZG_MONIK
 echo 'export ZG_MONIK='$ZG_MONIK >> $HOME/.bash_profile
-read -p "Enter portnum (10-64): " ZGP_PORT
-echo 'export ZGP_PORT='$ZGP_PORT >> $HOME/.bash_profile
 CHAIN_ID="zgtendermint_16600-1"
 
 sudo apt update
