@@ -54,7 +54,7 @@ sed -i \
 EXTERNAL_IP=$(wget -qO- eth0.me) \
 
 sed -i \
-    -e "/\[p2p\]/,/^\[/{s/\(external_address = \"\)\([^:]*\):\([0-9]*\).*/\1${EXTERNAL_IP}:$P2P_PORT\"/; t; s/\(external_address = \"\).*/\1${EXTERNAL_IP}:$P2P_PORT\"/}" \
+    -e "/\[p2p\]/,/^\[/{s/\(external_address = \"\)\([^:]*\):\([0-9]*\).*/\1${EXTERNAL_IP}:26656\"/; t; s/\(external_address = \"\).*/\1${EXTERNAL_IP}:26656\"/}" \
     $HOME/.0gchain/config/config.toml
 
     
