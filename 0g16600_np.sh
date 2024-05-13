@@ -19,6 +19,12 @@ CHAIN_ID="zgtendermint_16600-1"
 sudo apt update
 sudo apt install curl git jq build-essential gcc unzip wget lz4 -y
 
+sudo rm -rf /usr/local/go
+curl -Ls https://go.dev/dl/go1.21.10.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
+eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
+
+
 cd $HOME
 rm -rf 0g-chain
 git clone -b v0.1.0 https://github.com/0glabs/0g-chain.git
