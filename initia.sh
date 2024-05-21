@@ -50,7 +50,7 @@ sed -i -e 's|^indexer *=.*|indexer = "null"|' $HOME/.initia/config/config.toml
 
 sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:${INITIA_PORT}958\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:${INITIA_PORT}657\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:${INITIA_PORT}960\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:${INITIA_PORT}656\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":${INITIA_PORT}966\"%" $HOME/.initia/config/config.toml
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://0.0.0.0:${INITIA_PORT}917\"%; s%^address = \":8080\"%address = \":${INITIA_PORT}980\"%; s%^address = \"localhost:9090\"%address = \"0.0.0.0:${INITIA_PORT}990\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${INITIA_PORT}991\"%; s%:8545%:${INITIA_PORT}945%; s%:8546%:${INITIA_PORT}946%; s%:6065%:${INITIA_PORT}965%" $HOME/.initia/config/app.toml
-
+sed -i '/\[rpc\]/,/\[/{s/^laddr = "tcp:\/\/127\.0\.0\.1:/laddr = "tcp:\/\/0.0.0.0:/}' $HOME/.initia/config/config.toml
 
 
 sudo tee /etc/systemd/system/initia.service > /dev/null << EOF
