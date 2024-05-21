@@ -69,34 +69,13 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable initia.service
 
-sudo systemctl start initia.service
-sleep 30
-sudo systemctl stop initia
 cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
-initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
-sed -i -e 's|^seeds *=.*|seeds = "2eaa272622d1ba6796100ab39f58c75d458b9dbc@34.142.181.82:26656,c28827cb96c14c905b127b92065a3fb4cd77d7f6@testnet-seeds.whispernode.com:25756,cd69bcb00a6ecc1ba2b4a3465de4d4dd3e0a3db1@initia-testnet-seed.itrocket.net:51656,093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,2c729d33d22d8cdae6658bed97b3097241ca586c@195.14.6.129:26019"|' $HOME/.initia/config/config.toml
-curl -L https://snapshots-testnet.nodejumper.io/initia-testnet/addrbook.json > $HOME/.initia/config/addrbook.json
+rm -rf $HOME/.initia/data
 
-STATE_SYNC_RPC=https://testnet.initia.rpc.liveraven.net:443
-STATE_SYNC_PEER=7c6220827ac7a331400bbdc826014b50a7818c7a@23.88.5.169:33656
-LATEST_HEIGHT=$(curl -s $STATE_SYNC_RPC/block | jq -r .result.block.header.height)
-SYNC_BLOCK_HEIGHT=$(($LATEST_HEIGHT - 2000))
-SYNC_BLOCK_HASH=$(curl -s "$STATE_SYNC_RPC/block?height=$SYNC_BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+curl -L http://78.46.76.145:3131/initiation-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.initia
+mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
+sudo systemctl start initia && sudo journalctl -u initia -fn 100 -o cat
 
-echo $LATEST_HEIGHT $SYNC_BLOCK_HEIGHT $SYNC_BLOCK_HASH
-
-sed -i \
-    -e "s|^enable *=.*|enable = true|" \
-    -e "s|^rpc_servers *=.*|rpc_servers = \"$STATE_SYNC_RPC,$STATE_SYNC_RPC\"|" \
-    -e "s|^trust_height *=.*|trust_height = $SYNC_BLOCK_HEIGHT|" \
-    -e "s|^trust_hash *=.*|trust_hash = \"$SYNC_BLOCK_HASH\"|" \
-    -e "s|^persistent_peers *=.*|persistent_peers = \"$STATE_SYNC_PEER\"|" \
-    $HOME/.initia/config/config.toml
-
-mkdir -p $HOME/.initia/data && mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
-
-sudo systemctl start initia
-sudo journalctl -u initia -fn 100 -o cat
 
 
 
