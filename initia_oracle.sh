@@ -45,7 +45,7 @@ sudo systemctl daemon-reload && \
 sudo systemctl enable initia-oracle && \
 sudo systemctl restart initia-oracle && \
 sleep 5
-sudo journalctl -u initia-oracle -o cat -n 100
+sudo journalctl -u initia-oracle -o cat -n 100 --no-pager
 
 ORACLE_GRPC_ENDPOINT="0.0.0.0:${init_portindex}880"
 ORACLE_CLIENT_TIMEOUT="500ms"
@@ -55,7 +55,7 @@ sed -i '/\[oracle\]/,/\[/{s/^enabled *=.*/enabled = "true"/}' $NODE_APP_CONFIG_P
 sed -i "/oracle_address =/c\oracle_address = \"$ORACLE_GRPC_ENDPOINT\"" $NODE_APP_CONFIG_PATH
 sed -i "/client_timeout =/c\client_timeout = \"$ORACLE_CLIENT_TIMEOUT\"" $NODE_APP_CONFIG_PATH
 sed -i '/metrics_enabled =/c\metrics_enabled = "false"' $NODE_APP_CONFIG_PATH
-sudo systemctl restart initia && sudo journalctl -u initia -fn 100 -o cat
+sudo systemctl restart initia && sudo journalctl -u initia -fn 10 -o cat
 
 
 
