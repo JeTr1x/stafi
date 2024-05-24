@@ -55,7 +55,11 @@ sed -i '/\[oracle\]/,/\[/{s/^enabled *=.*/enabled = "true"/}' $NODE_APP_CONFIG_P
 sed -i "/oracle_address =/c\oracle_address = \"$ORACLE_GRPC_ENDPOINT\"" $NODE_APP_CONFIG_PATH
 sed -i "/client_timeout =/c\client_timeout = \"$ORACLE_CLIENT_TIMEOUT\"" $NODE_APP_CONFIG_PATH
 sed -i '/metrics_enabled =/c\metrics_enabled = "false"' $NODE_APP_CONFIG_PATH
-sudo systemctl restart initia && sudo journalctl -u initia -fn 10 -o cat
+sudo systemctl restart initia
+sleep 7
+sudo journalctl -u initia -n 100 -o cat --no-pager
+systemctl status initia-oracle
+
 
 
 
