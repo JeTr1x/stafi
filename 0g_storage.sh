@@ -42,29 +42,6 @@ s|^\s*miner_id\s*=\s*""|# miner_id = ""|
 ' $HOME/0g-storage-node/run/config.toml
 
 
-sudo tee /etc/systemd/system/zgstorage.service > /dev/null <<EOF
-[Unit]
-Description=zgstorage Node
-After=network.target
-
-[Service]
-User=$USER
-WorkingDirectory=$HOME/0g-storage-node/run
-ExecStart=$HOME/0g-storage-node/target/release/zgs_node --config $HOME/0g-storage-node/run/config.toml
-Restart=on-failure
-RestartSec=10
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-
-
-sudo systemctl daemon-reload && \
-sudo systemctl enable zgstorage && \
-sudo systemctl start zgstorage
-
 
 
 
