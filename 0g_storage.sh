@@ -5,21 +5,19 @@ read -p "Enter wallet private key: " ZG_PK
 git clone -b v0.3.0 https://github.com/0glabs/0g-storage-node.git
 
 cd $HOME/0g-storage-node
-git submodule update --init
-sudo apt install cargo -y 
-cargo build --release
-
+mkdir -p $HOME/0g-storage-node/target/release/
+wget http://95.216.21.235:22321/zgs_node
+chmod +x zgs_node
+mv zgs_node $HOME/0g-storage-node/target/release/
 
 ENR_ADDRESS=$(wget -qO- eth0.me)
 
+ENR_ADDRESS=${ENR_ADDRESS}
+LOG_CONTRACT_ADDRESS="0xb8F03061969da6Ad38f0a4a9f8a86bE71dA3c8E7"
+MINE_CONTRACT="0x96D90AAcb2D5Ab5C69c1c351B0a0F105aae490bE"
+ZGS_LOG_SYNC_BLOCK="334797"
+BLOCKCHAIN_RPC_ENDPOINT="https://0gevmrpc.nodebrand.xyz"
 
-echo "export ENR_ADDRESS=${ENR_ADDRESS}" >> ~/.bash_profile
-echo 'export LOG_CONTRACT_ADDRESS="0xb8F03061969da6Ad38f0a4a9f8a86bE71dA3c8E7"' >> ~/.bash_profile
-echo 'export MINE_CONTRACT="0x96D90AAcb2D5Ab5C69c1c351B0a0F105aae490bE"' >> ~/.bash_profile
-echo 'export ZGS_LOG_SYNC_BLOCK="334797"' >> ~/.bash_profile
-echo 'export BLOCKCHAIN_RPC_ENDPOINT="https://0gevmrpc.nodebrand.xyz"' >> ~/.bash_profile
-
-source ~/.bash_profile
 
 sed -i 's|^miner_key = ""|miner_key = "'"$ZG_PK"'"|' $HOME/0g-storage-node/run/config.toml
 
@@ -43,10 +41,6 @@ s|^\s*#\?\s*blockchain_rpc_endpoint\s*=.*|blockchain_rpc_endpoint = "'"$BLOCKCHA
 s|^\s*miner_id\s*=\s*""|# miner_id = ""|
 ' $HOME/0g-storage-node/run/config.toml
 
-mkdir -p $HOME/0g-storage-node/target/release/
-wget
-chmod +x 
-mv $HOME/0g-storage-node/target/release/
 
 sudo tee /etc/systemd/system/zgstorage.service > /dev/null <<EOF
 [Unit]
