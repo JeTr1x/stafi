@@ -89,30 +89,6 @@ else
 fi
 
 
-sudo tee /etc/systemd/system/ogd.service > /dev/null <<EOF
-[Unit]
-Description=OG Node
-After=network.target
-
-[Service]
-User=$USER
-Type=simple
-ExecStart=$(which 0gchaind) start --home $HOME/.0gchain
-Restart=on-failure
-LimitNOFILE=65535
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-
-
-sudo systemctl daemon-reload && \
-sudo systemctl enable ogd && \
-sudo systemctl restart ogd && \
-sudo journalctl -u ogd -f -o cat
-
-
 
 
 
