@@ -20,8 +20,7 @@ ZGP_PORT=26
 #echo 'export ZGP_PORT='$ZGP_PORT >> $HOME/.bash_profile
 CHAIN_ID="zgtendermint_16600-1"
 
-sudo apt update
-sudo apt install curl git jq build-essential gcc unzip wget lz4 -y
+apt install curl git jq build-essential gcc unzip wget lz4 -y
 
 cd $HOME
 rm -rf 0g-chain
