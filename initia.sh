@@ -72,9 +72,9 @@ sudo systemctl enable initia.service
 cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
 rm -rf $HOME/.initia/data
 
-curl -L http://78.46.76.145:3131/initiation-1_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.initia
+curl -L https://snapshots.kjnodes.com/initia-testnet/snapshot_latest.tar.lz4 | tar -Ilz4 -xf - -C $HOME/.initia
 mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
-sudo systemctl start initia && sudo journalctl -u initia -fn 100 -o cat
+
 
 
 
