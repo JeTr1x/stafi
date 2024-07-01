@@ -1,0 +1,56 @@
+{
+  "log_path": "infernet_node.log",
+  "manage_containers": true,
+  "server": {
+    "port": 4000,
+    "rate_limit": {
+      "num_requests": 100,
+      "period": 100
+    }
+  },
+  "chain": {
+    "enabled": true,
+    "trail_head_blocks": 5,
+    "rpc_url": "https://base-rpc.publicnode.com",
+    "registry_address": "0x3B1554f346DFe5c482Bb4BA31b880c1C18412170",
+    "wallet": {
+      "max_gas_limit": 5000000,
+      "private_key": "",
+      "payment_address": "",
+      "allowed_sim_errors": ["not enough balance", "no data", "0x2f4ca85b"]
+    },
+    "snapshot_sync": {
+      "sleep": 1.5,
+      "batch_size": 200
+    }
+  },
+  "docker": {
+    "username": "username",
+    "password": "password"
+  },
+  "redis": {
+    "host": "redis",
+    "port": 6379
+  },
+  "forward_stats": true,
+  "startup_wait": 1.0,
+  "containers": [
+    {
+      "id": "hello-world",
+      "image": "ritualnetwork/hello-world-infernet:latest",
+      "external": true,
+      "port": "3000",
+      "allowed_delegate_addresses": [],
+      "allowed_addresses": [],
+      "allowed_ips": [],
+      "command": "--bind=0.0.0.0:3000 --workers=2",
+      "env": {},
+      "volumes": [],
+      "accepted_payments": {
+        "0x0000000000000000000000000000000000000000": 1000000000000000000,
+        "0x59F2f1fCfE2474fD5F0b9BA1E73ca90b143Eb8d0": 1000000000000000000
+      },
+      "generates_proofs": false
+    }
+  ]
+}
