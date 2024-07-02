@@ -1,5 +1,5 @@
 rm -rf $HOME/0g-chain 
-rm $HOME/go/bin/0gchaind
+rm $HOME/go/bin/0gchaind /usr/local/bin/0gchaind
 cd
 git clone -b v0.2.3 https://github.com/0glabs/0g-chain.git
 ./0g-chain/networks/testnet/install.sh
