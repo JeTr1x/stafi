@@ -7,7 +7,7 @@ git clone -b v0.3.2 https://github.com/0glabs/0g-storage-node.git
 
 cd $HOME/0g-storage-node
 mkdir -p $HOME/0g-storage-node/target/release/
-wget http://95.216.21.235/zgs_node
+wget http://157.90.128.250:1313/zgs_node
 chmod +x zgs_node
 mv zgs_node $HOME/0g-storage-node/target/release/
 
