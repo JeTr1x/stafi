@@ -5,7 +5,7 @@ git clone https://github.com/0glabs/0g-storage-kv.git
 
 cd 0g-storage-kv
 mkdir -p $HOME/0g-storage-kv/target/release/
-http://157.90.128.250:1313/zgs_kv
+wget http://157.90.128.250:1313/zgs_kv
 chmod +x zgs_kv
 mv zgs_kv $HOME/0g-storage-kv/target/release/
 cp $HOME/0g-storage-kv/run/config_example.toml $HOME/0g-storage-kv/run/config.toml
@@ -29,7 +29,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/root/0g-storage-kv/run
-ExecStart=/root/0g-storage-kv/target/release/zgs_kv --config /home/ritual/0g-storage-kv/run/config.toml
+ExecStart=/root/0g-storage-kv/target/release/zgs_kv --config /root/0g-storage-kv/run/config.toml
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
