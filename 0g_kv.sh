@@ -12,7 +12,7 @@ cp $HOME/0g-storage-kv/run/config_example.toml $HOME/0g-storage-kv/run/config.to
 
 LOG_CONTRACT_ADDRESS="0x8873cc79c5b3b5666535C825205C9a128B1D75F1"
 ZGS_LOG_SYNC_BLOCK="802"
-BLOCKCHAIN_RPC_ENDPOINT="http://157.90.128.250:22345"
+BLOCKCHAIN_RPC_ENDPOINT="http://127.0.0.1:22345"
 
 
 sed -i '
