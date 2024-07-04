@@ -41,7 +41,7 @@
       "external": true,
       "port": "3000",
       "allowed_delegate_addresses": [],
-      "allowed_addresses": [""],
+      "allowed_addresses": [],
       "allowed_ips": [],
       "command": "--bind=0.0.0.0:3000 --workers=2",
       "env": {},
