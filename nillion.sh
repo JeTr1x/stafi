@@ -21,6 +21,7 @@ echo 'export NILLION_PORT='$NILLION_PORT >> $HOME/.bash_profile
 
 
 wget http://88.99.208.54:1433/nilliond
+chmod +x nilliond
 mv nilliond /usr/local/bin/nilliond
 nilliond version
 sleep 1
