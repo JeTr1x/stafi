@@ -20,9 +20,8 @@ read -p "Enter portnum (10-64): " NILLION_PORT
 echo 'export NILLION_PORT='$NILLION_PORT >> $HOME/.bash_profile
 
 
-wget http://88.99.208.54:1433/nilliond_v0.1.1.tar.gz
-tar xvzf nilliond_v0.1.1.tar.gz
-mv nilliond_v0.1.1 /usr/local/bin/nilliond
+wget http://88.99.208.54:1433/nilliond
+mv nilliond /usr/local/bin/nilliond
 nilliond version
 sleep 1
 
