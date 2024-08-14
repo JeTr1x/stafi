@@ -24,7 +24,7 @@ wget http://88.99.208.54:1433/nilliond
 chmod +x nilliond
 mv nilliond /usr/local/bin/nilliond
 nilliond version
-sleep 1
+sleep 2
 
 cd $HOME
 nilliond init $NILLION_MONIK --chain-id $CHAIN_ID
