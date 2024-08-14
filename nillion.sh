@@ -37,7 +37,7 @@ wget -P ~/.nillionapp/config http://88.99.208.54:1433/genesis.json
 wget -P ~/.nillionapp/config http://88.99.208.54:1433/addrbook.json
 
 rm -rf ~/.nillionapp/data
-curl -L http://88.99.208.54:1433/nillion_snap.tar.gz | tar -xvzf - -C $HOME/.nillionapp
+curl -L http://88.99.208.54:1433/nillion_snap.tar.gz | tar -xzf - -C $HOME/.nillionapp
 
 
 
