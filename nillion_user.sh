@@ -29,7 +29,7 @@ sleep 2
 cd $HOME
 nilliond init $NILLION_MONIK --chain-id $CHAIN_ID
 nilliond config set client chain-id $CHAIN_ID
-nilliond config set client keyring-backend test
+nilliond config set client keyring-backend os
 nilliond config set client node tcp://localhost:${NILLION_PORT}657
 
 rm ~/.nillionapp/config/genesis.json ~/.nillionapp/config/addrbook.json
