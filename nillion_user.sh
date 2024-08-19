@@ -56,7 +56,7 @@ sed -i -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.
 sed -i -e "s%^address = \"tcp://localhost:1317\"%address = \"tcp://0.0.0.0:${NILLION_PORT}917\"%; s%^address = \":8080\"%address = \":${NILLION_PORT}980\"%; s%^address = \"localhost:9090\"%address = \"0.0.0.0:${NILLION_PORT}990\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:${NILLION_PORT}991\"%; s%:8545%:${NILLION_PORT}945%; s%:8546%:${NILLION_PORT}946%; s%:6065%:${NILLION_PORT}965%" $HOME/.nillionapp/config/app.toml
 sed -i '/\[rpc\]/,/\[/{s/^laddr = "tcp:\/\/127\.0\.0\.1:/laddr = "tcp:\/\/0.0.0.0:/}' $HOME/.nillionapp/config/config.toml
 
-sudo tee $HOME/.nillionapp/validator.json > /dev/null <<EOF
+tee $HOME/.nillionapp/validator.json > /dev/null <<EOF
 {
         "pubkey": $(nilliond tendermint show-validator),
         "amount": "unil",
