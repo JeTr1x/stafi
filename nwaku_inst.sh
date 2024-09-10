@@ -5,7 +5,7 @@ read -rp "Enter PRIVKEY: " PRIVKEY
 read -rp "Enter PASSPHRASE: " PASSPHRASE
 read -rp "Enter RPC_KEY: " RPC_KEY
 NODEKEY=$(openssl rand -hex 32)
-echo $NODEKEY
+echo "YOUR NODEKEY IS " $NODEKEY
 
 # Клонируем проект:
 git clone https://github.com/waku-org/nwaku-compose
