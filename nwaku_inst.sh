@@ -20,6 +20,9 @@ sed -i "s|ETH_TESTNET_KEY=<YOUR_TESTNET_PRIVATE_KEY_HERE>|ETH_TESTNET_KEY=$PRIVK
 sed -i "s|RLN_RELAY_CRED_PASSWORD=\"my_secure_keystore_password\"|RLN_RELAY_CRED_PASSWORD=\"$PASSPHRASE\"|g" .env
 sed -i "s|NODEKEY=|NODEKEY=$NODEKEY|g" .env
 
+sed -ie "s|${NWAKU_IMAGE:-harbor.status.im/wakuorg/nwaku:v0.31.0}|wakuorg/nwaku:v0.32.0|" docker-compose.yml
+
+
 # Меняем маппинг портов в docker-compose.yml:
 sed -i "s|- 0.0.0.0:3000:3000|- 0.0.0.0:3222:3000|g" docker-compose.yml
 sed -i "s|- 127.0.0.1:4000:4000|- 127.0.0.1:4222:4000|g" docker-compose.yml
