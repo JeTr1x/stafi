@@ -3,7 +3,6 @@
 # Вписываем параметры в переменные:
 read -rp "Enter PRIVKEY: " PRIVKEY
 read -rp "Enter RPC_KEY: " RPC_KEY
-read -rp "Enter SLP_MINS: " SLPM
 NODEKEY=$(openssl rand -hex 32)
 PASSPHRASE="9XYl2Vvr72obuN4A0YEn"
 echo ""
@@ -34,9 +33,11 @@ sed -i "s|- 127.0.0.1:4000:4000|- 127.0.0.1:4222:4000|g" docker-compose.yml
 sed -i "s|8000:8000|8222:8000|g" docker-compose.yml
 sed -i "s|- 80:80 #Let's Encrypt|- 82:80 #Let's Encrypt|g" docker-compose.yml
 echo "Environment configuration completed!"
-((SLPT=$SLPM*60))
-echo "Sleeping" $SLPT "seconds"
-sleep $SLPT
+
+SLPRND=$(echo $(( RANDOM % 36000 )))
+echo "Sleeping 7 hours seconds and" $SLPRND "seconds after"
+sleep 25200
+sleep $SLPRND
 
 # Регистрируем RLN в сети Sepolia:
 # Может не сразу регаться из-за дорогого газа
