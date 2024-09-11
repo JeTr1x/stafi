@@ -2,10 +2,14 @@
 
 # Вписываем параметры в переменные:
 read -rp "Enter PRIVKEY: " PRIVKEY
-read -rp "Enter PASSPHRASE: " PASSPHRASE
 read -rp "Enter RPC_KEY: " RPC_KEY
 NODEKEY=$(openssl rand -hex 32)
-echo "YOUR NODEKEY IS " $NODEKEY
+PASSPHRASE="9XYl2Vvr72obuN4A0YEn"
+echo ""
+echo "================================================================"
+echo "YOUR NODEKEY:" $NODEKEY
+echo "================================================================"
+echo ""
 
 # Клонируем проект:
 git clone https://github.com/waku-org/nwaku-compose
@@ -27,7 +31,7 @@ sed -ie "s|${NWAKU_IMAGE:-harbor.status.im/wakuorg/nwaku:v0.31.0}|wakuorg/nwaku:
 sed -i "s|- 0.0.0.0:3000:3000|- 0.0.0.0:3222:3000|g" docker-compose.yml
 sed -i "s|- 127.0.0.1:4000:4000|- 127.0.0.1:4222:4000|g" docker-compose.yml
 sed -i "s|8000:8000|8222:8000|g" docker-compose.yml
-
+sed -i "s|- 80:80 #Let's Encrypt|- 82:80 #Let's Encrypt|g" docker-compose.yml
 echo "Environment configuration completed!"
 
 # Регистрируем RLN в сети Sepolia:
