@@ -34,9 +34,8 @@ sed -i "s|8000:8000|8222:8000|g" docker-compose.yml
 sed -i "s|- 80:80 #Let's Encrypt|- 82:80 #Let's Encrypt|g" docker-compose.yml
 echo "Environment configuration completed!"
 
-SLPRND=$(echo $(( RANDOM % 18000 )))
-echo "Sleeping 7 hours seconds and" $SLPRND "seconds after"
-sleep 25200
+SLPRND=$(echo $(( RANDOM % 12000 )))
+echo "Sleeping " $SLPRND "seconds after"
 sleep $SLPRND
 
 # Регистрируем RLN в сети Sepolia:
