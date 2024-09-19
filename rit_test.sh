@@ -19,3 +19,4 @@ sed -ie 's|"https://base-rpc.publicnode.com"|"'"$RPC_HTTP"'"|' config.json
 sed -ie 's|"id": "hello-world",|"id": "'"$CTR_ID"'",|' config.json
 
 docker compose up -d
+docker logs -f  infernet-node
