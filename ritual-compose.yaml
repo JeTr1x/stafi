@@ -12,7 +12,6 @@ services:
       - network
     depends_on:
       - redis
-      - infernet-anvil
     restart:
       on-failure
     extra_hosts:
