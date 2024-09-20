@@ -18,6 +18,7 @@ ETH_MAINNET_RPC_URL=https://mainnet.infura.io/v3/$API_KEY
 OPTIMISM_L2_RPC_URL=https://optimism-mainnet.infura.io/v3/$API_KEY
 HUB_OPERATOR_FID=$HUB_OPERATOR_FID
 EOL
+sed -ie s"|3000:3000|3999:3000|" docker-compose.yml
 
 # Run Docker compose to start the services
 docker compose run hubble yarn identity create
