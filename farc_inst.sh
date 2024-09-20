@@ -30,4 +30,5 @@ chmod -R 777 .hub .rocks grafana
 docker compose run hubble yarn identity create
 chmod -R 777 .hub .rocks grafana
 docker compose up statsd grafana hubble -d
+docker logs -f hubble-hubble-1
 
