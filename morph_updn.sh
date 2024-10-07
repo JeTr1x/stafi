@@ -1,5 +1,36 @@
 systemctl stop morph_gethd morph_noded
 
+
+GO_VERSION="1.22.0"
+
+# Remove any existing Go installation
+if [ -d "/usr/local/go" ]; then
+    echo "Removing previous Go installation..."
+    rm -rf /usr/local/go
+fi
+
+# Download the Go binary
+echo "Downloading Go $GO_VERSION..."
+wget https://dl.google.com/go/go$GO_VERSION.linux-amd64.tar.gz
+
+# Extract the archive
+echo "Extracting Go $GO_VERSION..."
+tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
+
+# Clean up by removing the downloaded archive
+echo "Cleaning up..."
+rm go$GO_VERSION.linux-amd64.tar.gz
+
+# Set up environment variables
+echo "Setting up environment variables..."
+if ! grep -q "/usr/local/go/bin" /etc/profile; then
+    echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+    echo "export PATH=\$PATH:\$HOME/go/bin" >> /etc/profile
+fi
+
+go version
+
+
 rm -rf 
 mkdir -p ~/.morph
 cd ~/.morph
