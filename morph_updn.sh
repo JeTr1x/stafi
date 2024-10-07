@@ -31,7 +31,7 @@ fi
 go version
 
 
-rm -rf 
+rm -rf ~/.morph
 mkdir -p ~/.morph
 cd ~/.morph
 git clone https://github.com/morph-l2/morph.git
