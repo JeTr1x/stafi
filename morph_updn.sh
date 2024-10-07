@@ -61,7 +61,7 @@ sed -i \
     -e "s/\(laddr = \"tcp:\/\/\)\([^:]*\):\([0-9]*\).*/\1\2:$RPC_PORT\"/" \
     -e "/\[p2p\]/,/^\[/{s/\(laddr = \"tcp:\/\/\)\([^:]*\):\([0-9]*\).*/\1\2:$P2P_PORT\"/}" \
     -e "/\[p2p\]/,/^\[/{s/\(external_address = \"\)\([^:]*\):\([0-9]*\).*/\1${EXTERNAL_IP}:$P2P_PORT\"/; t; s/\(external_address = \"\).*/\1${EXTERNAL_IP}:$P2P_PORT\"/}" \
-    /home/ritual/.morph/node-data/config/config.toml
+     $HOME/.morph/node-data/config/config.toml
 # Set indexer to config.toml
 sed -i "s/^indexer *=.*/indexer = \"kv\"/" $HOME/.morph/node-data/config/config.toml
 #sed -i "s/moniker = \"my-morph-node\"/moniker = \"$MONIKER\"/" $HOME/.morph/node-data/config/config.toml
@@ -86,8 +86,7 @@ Description=Geth Node Service
 After=network.target
 
 [Service]
-User=ritual
-Group=ritual
+User=root
 ExecStart=/home/ritual/.morph/morph/go-ethereum/build/bin/geth --morph-holesky \
     --datadir /home/ritual/.morph/geth-data \
     --verbosity=3 \
@@ -120,8 +119,7 @@ After=network.target
 Wants=network.target
 
 [Service]
-User=ritual
-Group=ritual
+User=root
 ExecStart=/home/ritual/.morph/morph/node/build/bin/morphnode --home /home/ritual/.morph/node-data \
 --l2.jwt-secret /home/ritual/.morph/jwt-secret.txt \
 --l2.eth http://127.0.0.1:8545 \
@@ -137,7 +135,7 @@ EOF
 systemctl daemon-reload
 systemctl restart morph_gethd morph_noded
 
-rm -rf /home/ritual/.morph/snapshot-20240805-1 /home/ritual/.morph/snapshot-20240805-1.tar.gz
+rm -rf /root/.morph/snapshot-20240805-1 /root/.morph/snapshot-20240805-1.tar.gz
 
 sleep 8
 
