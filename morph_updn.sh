@@ -87,8 +87,8 @@ After=network.target
 
 [Service]
 User=root
-ExecStart=/home/ritual/.morph/morph/go-ethereum/build/bin/geth --morph-holesky \
-    --datadir /home/ritual/.morph/geth-data \
+ExecStart=/root/.morph/morph/go-ethereum/build/bin/geth --morph-holesky \
+    --datadir /root/.morph/geth-data \
     --verbosity=3 \
     --http \
     --http.corsdomain="*" \
@@ -101,8 +101,8 @@ ExecStart=/home/ritual/.morph/morph/go-ethereum/build/bin/geth --morph-holesky \
     --authrpc.port="56551" \
     --authrpc.vhosts="*" \
     --gcmode=archive \
-    --authrpc.jwtsecret=/home/ritual/.morph/jwt-secret.txt \
-    --log.filename=/home/ritual/.morph/geth.log \
+    --authrpc.jwtsecret=/root/.morph/jwt-secret.txt \
+    --log.filename=/root/.morph/geth.log \
     --miner.gasprice="100000000"
 Restart=on-failure
 RestartSec=10
@@ -120,11 +120,11 @@ Wants=network.target
 
 [Service]
 User=root
-ExecStart=/home/ritual/.morph/morph/node/build/bin/morphnode --home /home/ritual/.morph/node-data \
---l2.jwt-secret /home/ritual/.morph/jwt-secret.txt \
+ExecStart=/root/.morph/morph/node/build/bin/morphnode --home /root/.morph/node-data \
+--l2.jwt-secret /root/.morph/jwt-secret.txt \
 --l2.eth http://127.0.0.1:8545 \
 --l2.engine http://127.0.0.1:56551 \
---log.filename /home/ritual/.morph/node.log
+--log.filename /root/.morph/node.log
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65536
