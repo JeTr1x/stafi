@@ -3,6 +3,8 @@
 wget https://install.fuel.network -O fuel-up.sh
 bash fuel-up.sh --no-modify-path
 echo "export PATH="$HOME/.fuelup/bin:$PATH"" >> /root/.bashrc
+export PATH="${HOME}/.fuelup/bin:${PATH}"
+source /root/.bashrc
 source /root/.bashrc
 fuelup self update
 fuelup update
