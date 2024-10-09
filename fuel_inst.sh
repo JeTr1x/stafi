@@ -1,8 +1,20 @@
 
 
-curl https://install.fuel.network | sh
+wget https://install.fuel.network -O fuel-up.sh
+bash fuel-up.sh --no-modify-path
+echo "export PATH="$HOME/.fuelup/bin:$PATH"" >> /root/.bashrc
+source /root/.bashrc
+fuelup self update
+fuelup update
+fuelup default latest
+
 git clone https://github.com/FuelLabs/chain-configuration
-read -p "Enter P2P_PRIVATE_KEY: " P2P_PRIVATE_KEY
+P2P_PRIVATE_KEY=$(cat /etc/systemd/system/fueld.service | grep keypair | awk -F "keypair " '{print $2}' | awk -F " --relayer" '{print $1}')
+
+echo "=========================================================================================================="
+echo "Key found in old service file:" $P2P_PRIVATE_KEY
+echo "=========================================================================================================="
+
 
 sudo tee /etc/systemd/system/fueld.service > /dev/null <<EOF
 [Unit]
