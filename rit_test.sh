@@ -6,7 +6,7 @@ read -rp "Enter RPC: " RPC_HTTP
 read -rp "Enter Contract_ID: " CTR_ID
 read -rp "Enter Contract_Address: " CTR_ADDR
 
-
+git clone https://github.com/ritual-net/infernet-container-starter
 docker pull ritualnetwork/hello-world-infernet:latest
 
 cd ~/infernet-container-starter/deploy
