@@ -7,9 +7,7 @@ read -rp "Enter Contract_ID: " CTR_ID
 read -rp "Enter Contract_Address: " CTR_ADDR
 
 
-git clone https://github.com/ritual-net/infernet-container-starter
-cd ~/infernet-container-starter/projects/hello-world/container
-make build
+docker pull ritualnetwork/hello-world-infernet:latest
 
 cd ~/infernet-container-starter/deploy
 wget -O  docker-compose.yaml https://raw.githubusercontent.com/JeTr1x/stafi/refs/heads/main/ritual-compose.yaml
